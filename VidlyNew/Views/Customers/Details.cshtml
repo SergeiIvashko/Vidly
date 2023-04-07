@@ -1,0 +1,15 @@
+﻿@model Vidli.Models.Customer
+
+@{
+    ViewData["Name"] = Model.Name;
+    Layout = "_Layout";
+}
+
+<h2>@Model.Name</h2>
+<ul class="">
+    <li>Membership Type: @Model.Name</li>
+    @if (@Model.Birthdate != null)
+    {
+        <li>Birthdate: @Model.Birthdate.Value.ToShortDateString()</li>
+    }
+</ul>
