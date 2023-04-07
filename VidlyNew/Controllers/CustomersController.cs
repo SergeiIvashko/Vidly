@@ -28,7 +28,12 @@ namespace Vidli.Controllers
         {
             var customers = _context.Customers.Include(c => c.MembershipType).ToList();
 
-            return View(customers);
+            if (User.IsInRole(RoleName.Admin))
+            {
+                return View("List", customers);
+            }
+
+            return View("ReadOnlyList", customers);
         }
 
         public ActionResult Details(int id)

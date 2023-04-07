@@ -1,6 +1,4 @@
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.EntityFrameworkCore;
 using VidlyNew.Data;
 
@@ -22,18 +20,25 @@ namespace VidlyNew
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
+            builder.Services.AddAuthentication().AddFacebook(facebookOptions =>
+            {
+                facebookOptions.AppId = builder.Configuration["Authentication:Facebook:AppId"];
+                facebookOptions.AppSecret = builder.Configuration["Authentication:Facebook:AppSecret"];
+                facebookOptions.AccessDeniedPath = "/AccessDeniedPathInfo";
+            });
+
             builder.Services.AddControllersWithViews();
 
             builder.Services.AddAutoMapper(typeof(ApplicationDbContext));
+
+            var userPw = builder.Configuration["SeedUserPW"];
 
             var app = builder.Build();
 
             using (var scope = app.Services.CreateScope())
             {
                 var services = scope.ServiceProvider;
-                var context = services.GetRequiredService<ApplicationDbContext>();
-
-                await SeedData.Initialize(services);
+                await SeedData.Initialize(services, userPw);
             }
 
             // Configure the HTTP request pipeline.

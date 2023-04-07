@@ -6,33 +6,27 @@ namespace VidlyNew.Data
 {
     public static class SeedData
     {
-        const string AdminEmail = "admin@vidly.com";
+        private static readonly IdentityUser admin = AdminProfile();
 #pragma warning disable CS8602 // Dereference of a possibly null reference.
         #region snippet_Initialize
-        public static async Task Initialize(IServiceProvider serviceProvider)
+        public static async Task Initialize(IServiceProvider serviceProvider, string userPw)
         {
             using (var context = new ApplicationDbContext(
                 serviceProvider.GetRequiredService<DbContextOptions<ApplicationDbContext>>()))
             {
-                var adminID = await EnsureUser(serviceProvider);
+                await EnsureUser(serviceProvider, userPw);
                 await EnsureRole(serviceProvider);
             }
         }
 
-        private static async Task<string> EnsureUser(IServiceProvider serviceProvider)
+        private static async Task<string> EnsureUser(IServiceProvider serviceProvider, string userPw)
         {
             var userManager = serviceProvider.GetService<UserManager<IdentityUser>>();
 
-            var user = await userManager.FindByEmailAsync(AdminEmail);
+            var user = await userManager.FindByEmailAsync(admin.Email);
             if (user == null)
             {
-                user = new IdentityUser
-                {
-                    UserName = "admin",
-                    Email = AdminEmail,
-                    EmailConfirmed = true
-                };
-                await userManager.CreateAsync(user, "$aA111111");
+                await userManager.CreateAsync(admin, userPw);
             }
 
             if (user == null)
@@ -41,6 +35,16 @@ namespace VidlyNew.Data
             }
 
             return user.Id;
+        }
+
+        private static IdentityUser AdminProfile()
+        {
+            return new IdentityUser
+            {
+                UserName = "admin@vidly.com",
+                Email = "admin@vidly.com",
+                EmailConfirmed = true
+            };
         }
 
         private static async Task<IdentityResult> EnsureRole(IServiceProvider serviceProvider)
@@ -67,7 +71,7 @@ namespace VidlyNew.Data
                 throw new ArgumentNullException($"{nameof(userManager)} is null");
             }
 
-            var user = await userManager.FindByEmailAsync(AdminEmail);
+            var user = await userManager.FindByEmailAsync(admin.Email);
 
             if (user == null)
             {
