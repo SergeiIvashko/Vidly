@@ -1,0 +1,39 @@
+﻿@model Vidli.ViewModels.MovieFormModel
+@{
+    ViewBag.Title = "New Movie";
+    Layout = "_Layout";
+}
+
+<h2>@Model.Title</h2>
+@using(Html.BeginForm("Save", "Movies"))
+{
+    @Html.ValidationSummary(false)
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Name, new {@class ="form-label mt-4"})
+        @Html.TextBoxFor(m => m.Name, new {@class ="form-control"})
+        @Html.ValidationMessageFor(m => m.Name)
+    </div>
+    
+    <div class="form-group">
+        @Html.LabelFor(m => m.ReleaseDate, new {@class ="form-label mt-4"})
+        @Html.TextBoxFor(m => m.ReleaseDate,"{0:d MMM yyyy}", new {@class ="form-control"})
+        @Html.ValidationMessageFor(m => m.ReleaseDate)
+    </div>
+
+    <div class="list-group">
+        @Html.LabelFor(m => m.GenreId, new {@class ="form-label mt-4"})
+        @Html.DropDownListFor(m => m.GenreId, new SelectList(Model.Genres, "Id", "Name"), "Select Genge", new {@class ="form-control"})
+        @Html.ValidationMessageFor(m => m.GenreId)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.NumberInStock, new {@class ="form-label mt-4"})
+        @Html.TextBoxFor(m => m.NumberInStock, new {@class="form-control"})
+        @Html.ValidationMessageFor(m => m.NumberInStock)
+    </div>
+
+    @Html.HiddenFor(m => m.Id)
+    @Html.AntiForgeryToken()
+    <button type="submit" class="btn btn-primary">Save</button>
+}

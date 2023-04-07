@@ -1,0 +1,28 @@
+﻿@model Vidli.ViewModels.RandomMovieViewModel
+@{
+    Layout = "_Layout";
+    ViewBag.Title = "Random";
+}
+
+<div class="text-center">
+    @{
+        var className = Model.Customers.Count > 0 ? "popular" : null;
+    }
+    <h2 class="@className">@Model.Movie.Name</h2>
+</div>
+
+<div class="text-center">
+    @if (Model.Customers.Count == 0)
+    {
+        <text>No one has rented this movie before</text>
+    }
+    else
+    {
+        <table>
+            @foreach (var movie in Model.Customers)
+            {
+                <tr><th>@movie.Name</th></tr>
+            }
+        </table>
+    }
+</div>
