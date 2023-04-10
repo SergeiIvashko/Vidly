@@ -1,4 +1,4 @@
-﻿namespace Vidli.Core.HttpContext
+﻿namespace VidlyNew.Core.HttpContext
 {
     public static class GetUri
     {

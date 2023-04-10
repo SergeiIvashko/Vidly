@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using VidliNew.Models;
 
-namespace Vidli.Models
+namespace VidlyNew.Models
 {
     public class Customer
     {
@@ -18,5 +19,7 @@ namespace Vidli.Models
         [Display(Name = "Membership Type")]
         public byte MembershipTypeId { get; set; }
         public MembershipType? MembershipType { get; set; }
+
+        public IList<Rental> Rentals { get; set; }
     }
 }

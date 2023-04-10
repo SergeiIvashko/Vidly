@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using Vidli.Models;
+using VidlyNew.Models;
 
-namespace Vidli.ViewModels
+namespace VidlyNew.ViewModels
 {
     public class MovieFormModel
     {

@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using Vidli.Models;
+using VidlyNew.Models;
 using Vidli.Models.Persistence.EntityConfigurations;
 
 namespace VidlyNew.Data
@@ -11,6 +11,7 @@ namespace VidlyNew.Data
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Genre> Genres { get; set; }
         public DbSet<MembershipType> MembershipTypes { get; set; }
+        public DbSet<Rental> Rentals { get; set; }
 
         public ApplicationDbContext()
         {

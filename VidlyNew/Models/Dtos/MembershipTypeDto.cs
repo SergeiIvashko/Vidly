@@ -1,4 +1,4 @@
-﻿namespace Vidli.Dtos
+﻿namespace VidliNew.Models.Dtos
 {
     public class MembershipTypeDto
     {

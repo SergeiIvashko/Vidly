@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Vidli.Models
+namespace VidlyNew.Models
 {
     public class Movie
     {
@@ -21,5 +21,9 @@ namespace Vidli.Models
         [Display(Name = "Number in Stock")]
         [Range(1, 20)]
         public byte NumberInStock { get; set; }
+
+        public IList<Rental>? Rentals { get; set; }
+
+        public int NumberAvailable { get; set; }
     }
 }
