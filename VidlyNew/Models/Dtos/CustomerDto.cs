@@ -1,7 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using Vidli.Models;
 
-namespace Vidli.Dtos
+namespace VidliNew.Models.Dtos
 {
     public class CustomerDto
     {

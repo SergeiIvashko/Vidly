@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Vidli.Models
+namespace VidlyNew.Models
 {
     public class Movie
     {

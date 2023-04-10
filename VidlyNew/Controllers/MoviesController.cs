@@ -1,11 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Vidli.Models;
-using Vidli.Models.Persistence;
-using Vidli.ViewModels;
-using VidlyNew.Data;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Authorization;
+using VidlyNew.Data;
 using VidlyNew.Models;
+using VidlyNew.ViewModels;
 
 namespace Vidli.Controllers
 {

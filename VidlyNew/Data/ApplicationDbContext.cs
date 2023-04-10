@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using Vidli.Models;
+using VidlyNew.Models;
 using Vidli.Models.Persistence.EntityConfigurations;
 
 namespace VidlyNew.Data

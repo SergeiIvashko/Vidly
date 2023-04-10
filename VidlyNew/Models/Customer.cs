@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using VidliNew.Models;
 
-namespace Vidli.Models
+namespace VidlyNew.Models
 {
     public class Customer
     {
