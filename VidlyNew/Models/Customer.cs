@@ -19,5 +19,7 @@ namespace VidlyNew.Models
         [Display(Name = "Membership Type")]
         public byte MembershipTypeId { get; set; }
         public MembershipType? MembershipType { get; set; }
+
+        public IList<Rental> Rentals { get; set; }
     }
 }
